@@ -99,7 +99,7 @@ if ($count -eq 1) {
     $active = $ids[0]
 } else {
     Write-Host ""
-    Write-Host "Which account should be active (used by default)?" -ForegroundColor Cyan
+    Write-Host "Which account should be active (selected)?" -ForegroundColor Cyan
     for ($i = 0; $i -lt $count; $i++) {
         Write-Host ("  {0}) {1} ({2})" -f ($i + 1), $ids[$i], $usernames[$i])
     }
