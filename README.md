@@ -4,6 +4,7 @@ After Sklauncher v4.0.58 and v3.2.18 the option to create an offline mode accoun
 This allows you to make an offline mode account by editing the accounts.json file that sklauncher uses.
 
 This tool asks you a few questions and builds the `accounts.json` file for you, so you don't have to edit it by hand. You can make one account or several. The UUID is worked out from your username automatically.
+You can also use the website: https://that-pr0.github.io/Sklauncher-Offline-Account-Creator
 
 **Requires:** Windows 10 or 11. Nothing to install. This makes the `accounts.json` file used by Sklauncher 4.0.
 
