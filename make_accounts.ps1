@@ -1,5 +1,14 @@
 $FileName = "accounts.json"
 
+function Get-OfflineUuid($Name) {
+    $md5 = [System.Security.Cryptography.MD5]::Create()
+    $b = $md5.ComputeHash([System.Text.Encoding]::UTF8.GetBytes("OfflinePlayer:" + $Name))
+    $b[6] = ($b[6] -band 0x0F) -bor 0x30
+    $b[8] = ($b[8] -band 0x3F) -bor 0x80
+    $h = ($b | ForEach-Object { $_.ToString("x2") }) -join ""
+    return "{0}-{1}-{2}-{3}-{4}" -f $h.Substring(0,8), $h.Substring(8,4), $h.Substring(12,4), $h.Substring(16,4), $h.Substring(20)
+}
+
 function Ask-YesNo($Prompt) {
     while ($true) {
         $a = (Read-Host "$Prompt [y/n]").Trim().ToLower()
@@ -82,8 +91,7 @@ for ($i = 1; $i -le $count; $i++) {
     Write-Host "Make sure to type your actual username."
     $username = Ask-Text "Username"
 
-    Write-Host "Your UUID can be found here: https://skmedix.pl/settings"
-    $uuid = Ask-Text "UUID"
+    $uuid = Get-OfflineUuid $username
 
     [void]$ids.Add($id)
     [void]$usernames.Add($username)
